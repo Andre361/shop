@@ -1,0 +1,129 @@
+{
+  "version": 2,
+  "projects": {
+    "shopping": {
+      "root": "shopping",
+      "sourceRoot": "shopping/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/shopping",
+            "index": "shopping/src/index.html",
+            "main": "shopping/src/main.tsx",
+            "polyfills": "shopping/src/polyfills.ts",
+            "tsConfig": "shopping/tsconfig.app.json",
+            "assets": [
+              "shopping/src/favicon.ico",
+              "shopping/src/assets"
+            ],
+            "styles": ["shopping/src/styles.css"],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/shopping/src/environments/environment.ts",
+                  "with": "apps/shopping/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "shopping:build",
+            "hmr": true
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "shopping:build:production",
+              "hmr": false
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/shopping/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/shopping"],
+          "options": {
+            "jestConfig": "apps/shopping/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shopping-e2e": {
+      "root": "apps/shopping-e2e",
+      "sourceRoot": "apps/shopping-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/shopping-e2e/cypress.json",
+            "devServerTarget": "shopping:serve",
+            "tsConfig": "apps/shopping-e2e/tsconfig.json"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "shopping:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/shopping-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "style": "css",
+        "linter": "eslint",
+        "babel": true
+      },
+      "component": {
+        "style": "css"
+      },
+      "library": {
+        "style": "css",
+        "linter": "eslint"
+      }
+    }
+  },
+  "defaultProject": "shopping"
+}
