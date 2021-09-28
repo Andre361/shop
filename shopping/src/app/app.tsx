@@ -5,97 +5,73 @@ import star from './star.svg';
 
 export function App() {
   return (
-    <div className={styles.app}>
-      <header className="flex">
-        <Logo width="75" height="75" />
-        <h1>Welcome to shopping!</h1>
-      </header>
-      <main>
-        <h2>Resources &amp; Tools</h2>
-        <p>Thank you for using and showing some ♥ for Nx.</p>
-        <div className="flex github-star-container">
-          <a
-            href="https://github.com/nrwl/nx"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {' '}
-            If you like Nx, please give it a star:
-            <div className="github-star-badge">
-              <img src={star} className="material-icons" alt="" />
-              Star
-            </div>
-          </a>
-        </div>
-        <p>Here are some links to help you get started.</p>
-        <ul className="resources">
-          <li className="col-span-2">
-            <a
-              className="resource flex"
-              href="https://egghead.io/playlists/scale-react-development-with-nx-4038"
-            >
-              Scale React Development with Nx (Course)
-            </a>
-          </li>
-          <li className="col-span-2">
-            <a
-              className="resource flex"
-              href="https://nx.dev/latest/react/tutorial/01-create-application"
-            >
-              Interactive tutorial
-            </a>
-          </li>
-          <li className="col-span-2">
-            <a className="resource flex" href="https://nx.app/">
-              <svg
-                width="36"
-                height="36"
-                viewBox="0 0 120 120"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M120 15V30C103.44 30 90 43.44 90 60C90 76.56 76.56 90 60 90C43.44 90 30 103.44 30 120H15C6.72 120 0 113.28 0 105V15C0 6.72 6.72 0 15 0H105C113.28 0 120 6.72 120 15Z"
-                  fill="#0E2039"
-                />
-                <path
-                  d="M120 30V105C120 113.28 113.28 120 105 120H30C30 103.44 43.44 90 60 90C76.56 90 90 76.56 90 60C90 43.44 103.44 30 120 30Z"
-                  fill="white"
-                />
-              </svg>
-              <span className="gutter-left">Nx Cloud</span>
-            </a>
-          </li>
-        </ul>
-        <h2>Next Steps</h2>
-        <p>Here are some things you can do with Nx.</p>
-        <details open>
-          <summary>Add UI library</summary>
-          <pre>{`# Generate UI lib
-nx g @nrwl/react:lib ui
-
-# Add a component
-nx g @nrwl/react:component xyz --project ui`}</pre>
-        </details>
-        <details>
-          <summary>View dependency graph</summary>
-          <pre>{`nx dep-graph`}</pre>
-        </details>
-        <details>
-          <summary>Run affected commands</summary>
-          <pre>{`# see what's been affected by changes
-nx affected:dep-graph
-
-# run tests for current changes
-nx affected:test
-
-# run e2e tests for current changes
-nx affected:e2e
-  `}</pre>
-        </details>
-      </main>
+    <div id="app" className="bg-green-50 flex flex-row ">
+      <Cart /> <Product />
     </div>
   );
 }
 
+function Cart() {
+  return (
+    <div id="cart" className="flex  m-2 w-4/12 text-center p-16">
+      <div className="cart-icon">
+        <i className="fa fa-2x fa-shopping-cart" />
+      </div>
+      <div>
+        <ul className="flex">
+          <li>
+            <p>The Fullstack Hoodie</p>
+            <div className="items-right">
+              <p>(placeholder icon text)</p>
+            </div>
+            <div className="item-details">
+              <span className="text-green-500">$99 each</span>
+              <span className="float-right">Quantity: 2</span>
+            </div>
+          </li>
+        </ul>
+        <div className="cart-props">
+          <p>
+            Total Quantity: <span>2</span>
+          </p>
+          <p className="remove-icon">{/*TODO remove icon*/}</p>
+        </div>
+        <button className="px-10 py-4 text-white bg-indigo-500 rounded hover:bg-indigo-700">
+          Checkout (<span className="font-bold">$</span>)
+        </button>
+      </div>
+    </div>
+  );
+}
+function Product() {
+  return (
+    <div id="product" className="flex bg-white  box-content p-4 w-8/12 p-16 ">
+      <div className="text-center align-top">
+        <i className="fa fa-2x fa-user-circle" />
+      </div>
+
+      <ul>
+        <li>
+          <div>
+            <h2 className="font-semibold">
+              The FullStack Hoodie{' '}
+              <span className="float-right text-white bg-blue-500 rounded p-2 m-2">
+                Add to Cart
+              </span>
+            </h2>
+            <p>Lightweight, breathable hoodie</p>
+            <span className="font-semibold text-blue-500">
+              {/* add icon */}$99
+            </span>
+          </div>
+        </li>
+      </ul>
+      <div className="relative h-32 w-32">
+        <span className="font-bold absolute bottom-0 right-0 h-16 w-16">
+          # of products: 4
+        </span>
+      </div>
+    </div>
+  );
+}
 export default App;
