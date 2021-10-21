@@ -64,7 +64,7 @@ export default class Cart extends Component<Props, State> {
           <div className="m-4 text-sm text-gray-400">
             Total Quantity: 2{' '}
             <span className="float-right">
-              <i className="fad fa-trash " /> Remove all
+              <i className="fa fa-trash " /> Remove all
             </span>
           </div>
           <span className="flex width-full justify-center">
